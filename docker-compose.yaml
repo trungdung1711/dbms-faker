@@ -4,6 +4,8 @@ services:
     container_name: my-postgresql
     ports:
       - '5432:5432'
+    expose:
+      - 5432
     environment:
       - 'ALLOW_EMPTY_PASSWORD=yes'
 
@@ -27,4 +29,4 @@ services:
     expose:
       - 6379
     environment:
-      - REDIS_ARGS=--requirepass <PASSWORD>
+      - REDIS_ARGS=--requirepass <YOUR-PASSWORD>
