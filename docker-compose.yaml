@@ -1,0 +1,30 @@
+services:
+  postgresql:
+    image: docker.io/bitnami/postgresql:17
+    container_name: my-postgresql
+    ports:
+      - '5432:5432'
+    environment:
+      - 'ALLOW_EMPTY_PASSWORD=yes'
+
+  pgadmin4:
+      image: elestio/pgadmin:latest
+      container_name: postgresql-admin
+      environment:
+        PGADMIN_DEFAULT_EMAIL: <YOUR-MAIL>
+        PGADMIN_DEFAULT_PASSWORD: <YOUR-PASSWORD>
+        PGADMIN_LISTEN_PORT: 8080
+      ports:
+        - 8080:8080
+      expose:
+        - 8080
+
+  redis:
+    image: redis/redis-stack-server:latest
+    container_name: my-redis
+    ports:
+      - 6379:6379
+    expose:
+      - 6379
+    environment:
+      - REDIS_ARGS=--requirepass <PASSWORD>
